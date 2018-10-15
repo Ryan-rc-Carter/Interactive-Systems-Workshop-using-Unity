@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     private float speed = 5;
 
     [SerializeField]
-    [Range(1.0f, 100.0f)]
+    [Range(0.0f, 100.0f)]
     private float jumpForce = 5.0f;
 
 	// Use this for initialization
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 
         float x = Input.GetAxis("Horizontal") * speed;
         float z = Input.GetAxis("Vertical") * speed;
-        bool jump = Input.GetKeyDown("space");
+        /*bool jump = Input.GetKeyDown("space");
 
         if ((jump == true) && (canJump = true))
         {
@@ -44,16 +44,16 @@ public class PlayerMovement : MonoBehaviour {
             playerRigidbody.AddForce(x, jumpForce, z, ForceMode.Impulse);
 
             Invoke("JumpWait", jumpWait);
-        }
+        }*/
 
         playerRigidbody.AddForce(x, 0.0f, z);
 
 
     }
 
-    private bool JumpWait()
+    /*private bool JumpWait()
     {
         canJump = true;
         return canJump;
-    }
+    }*/
 }

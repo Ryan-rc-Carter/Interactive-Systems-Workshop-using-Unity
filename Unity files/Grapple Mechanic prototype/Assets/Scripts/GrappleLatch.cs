@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class GrappleLatch : MonoBehaviour {
 
-    public Transform anchorPoint;
+    public float orbitSpeed = 5.0f;
 
-    private Vector3 playerNode;
+    public Transform targetObject;
 
-    
+    private Vector3 targetObjectVector3;
 
-	// Use this for initialization
-	void Start () {
 
-        playerNode = anchorPoint.position;
+    //private float targetDistance;
 
-        GetComponent<SpringJoint>().connectedBody.position = playerNode;
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		
-	}
+
+    // Use this for initialization
+    void Start() {
+
+        targetObjectVector3 = new Vector3(targetObject.position.x, targetObject.position.y, targetObject.position.z);
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate() {
+
+
+        if (Input.GetKey("space"))
+        {
+
+
+            //targetDistance = Vector3.Distance(targetObject.position, transform.position);
+
+
+            transform.RotateAround(targetObjectVector3, -Vector3.right, orbitSpeed);
+        }
+    }
 }
