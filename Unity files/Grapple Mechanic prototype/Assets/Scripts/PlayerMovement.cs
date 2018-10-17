@@ -8,52 +8,100 @@ public class PlayerMovement : MonoBehaviour {
 
     private Rigidbody playerRigidbody;
 
-    private bool canJump = true;
+    public GameObject rope;
+
+    private bool pointFound;
 
 
-    [SerializeField]
-    [Range(0.0f, 5.0f)]
-    private float jumpWait = 3.0f;
+    GameObject closest = null;
+
+    private bool isHinge = false;
+
+    private HingeJoint hj;
+
+
+
+
+
 
 
     [SerializeField]
     [Range(1.0f,100.0f)]
     private float speed = 5;
 
-    [SerializeField]
-    [Range(0.0f, 100.0f)]
-    private float jumpForce = 5.0f;
+
 
 	// Use this for initialization
 	void Start () {
 
         playerRigidbody = GetComponent<Rigidbody>();
+
+        pointFound = false;
+
+   
 		
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        float x = Input.GetAxis("Horizontal") * speed;
+
         float z = Input.GetAxis("Vertical") * speed;
-        /*bool jump = Input.GetKeyDown("space");
 
-        if ((jump == true) && (canJump = true))
+
+        playerRigidbody.AddForce(0.0f, 0.0f, z);
+
+
+
+        if (Input.GetKeyDown("space"))
         {
-            canJump = false;
-            playerRigidbody.AddForce(x, jumpForce, z, ForceMode.Impulse);
+            if (pointFound == false)
+                ClosestGrapplePoint();
 
-            Invoke("JumpWait", jumpWait);
-        }*/
 
-        playerRigidbody.AddForce(x, 0.0f, z);
+            Instantiate(rope, closest.transform.position, closest.transform.rotation);
+
+            hj = gameObject.AddComponent(typeof(HingeJoint)) as HingeJoint;
+
+
+
+        }
+        else if (Input.GetKeyUp("space"))
+        {
+            isHinge = false;
+            Destroy(hj);
+
+            Destroy(GameObject.FindGameObjectWithTag("Rope"));
+        }
+
+
 
 
     }
 
-    /*private bool JumpWait()
+    public GameObject ClosestGrapplePoint()
     {
-        canJump = true;
-        return canJump;
-    }*/
+        GameObject[] points;
+
+        points = GameObject.FindGameObjectsWithTag("Grapple Point");
+
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        foreach(GameObject gp in points)
+        {
+            Vector3 diff = gp.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if(curDistance < distance)
+            {
+                closest = gp;
+                distance = curDistance;
+            }
+        }
+
+
+        return closest;
+    }
+
+
 }
