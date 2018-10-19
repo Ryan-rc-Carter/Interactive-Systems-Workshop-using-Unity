@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136885514087031336}
   - component: {fileID: 54411502865205942}
   - component: {fileID: 59038545808239500}
+  - component: {fileID: 114017483471739026}
   m_Layer: 0
   m_Name: Segment
   m_TagString: Rope
@@ -135,6 +136,17 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &114017483471739026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681103751198432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98098fa9fb3e95e4ea9b2f13417914aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136885514087031336
 CapsuleCollider:
   m_ObjectHideFlags: 1

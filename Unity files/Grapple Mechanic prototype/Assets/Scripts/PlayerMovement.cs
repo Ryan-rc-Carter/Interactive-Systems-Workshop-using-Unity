@@ -10,7 +10,11 @@ public class PlayerMovement : MonoBehaviour {
 
     public GameObject rope;
 
-    private bool pointFound;
+    private bool isRope;
+
+    private bool inRange = false;
+
+    private float grappleDistance = 0.5f;
 
 
     GameObject closest = null;
@@ -19,6 +23,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private HingeJoint hj;
 
+
+    private GameObject grapplePoint;
 
 
 
@@ -36,14 +42,14 @@ public class PlayerMovement : MonoBehaviour {
 
         playerRigidbody = GetComponent<Rigidbody>();
 
-        pointFound = false;
+        
 
    
 		
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
 
         float z = Input.GetAxis("Vertical") * speed;
@@ -55,21 +61,24 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown("space"))
         {
-            if (pointFound == false)
-                ClosestGrapplePoint();
+            if (inRange)
+            {
+                isRope = true;
 
 
-            Instantiate(rope, closest.transform.position, closest.transform.rotation);
+                //Instantiate(rope);
 
-            hj = gameObject.AddComponent(typeof(HingeJoint)) as HingeJoint;
+                
 
-
-
+                Connect();
+            }
         }
         else if (Input.GetKeyUp("space"))
         {
             isHinge = false;
             Destroy(hj);
+
+            isRope = false;
 
             Destroy(GameObject.FindGameObjectWithTag("Rope"));
         }
@@ -79,29 +88,44 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    public GameObject ClosestGrapplePoint()
+    private void Connect()
     {
-        GameObject[] points;
-
-        points = GameObject.FindGameObjectsWithTag("Grapple Point");
-
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-
-        foreach(GameObject gp in points)
-        {
-            Vector3 diff = gp.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if(curDistance < distance)
-            {
-                closest = gp;
-                distance = curDistance;
-            }
-        }
+        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple Point");
 
 
-        return closest;
+        grappleDistance = Vector3.Distance(grapplePoint.transform.position, transform.position);
+
+        hj = gameObject.AddComponent<HingeJoint>();
+
+        GetComponent<HingeJoint>().autoConfigureConnectedAnchor = false;
+
+        GetComponent<HingeJoint>().connectedBody = grapplePoint.GetComponent<Rigidbody>();
+
+        GetComponent<HingeJoint>().anchor = new Vector3(0.0f, grappleDistance, 0.0f);
+
+        GetComponent<HingeJoint>().connectedAnchor = new Vector3(0.0f, 0.0f, 0.0f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        inRange = true;
+
+        if(GetComponent<HingeJoint>() == true)
+            grapplePoint = other.gameObject;
+            //GetComponent<HingeJoint>().connectedBody = other.GetComponent<Rigidbody>();
+
+
+        grapplePoint = other.gameObject;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        inRange = false;
+
+        
+    }
+
 
 
 }
