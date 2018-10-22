@@ -9,9 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody playerRigidbody;
 
     public GameObject rope;
-
-    private bool isRope;
-
+   
     private bool inRange = false;
 
     private float grappleDistance = 0.5f;
@@ -25,6 +23,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
     private GameObject grapplePoint;
+
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    public Material inRangeMaterial;
+    public Material outOfRangeMaterial;
 
 
 
@@ -41,6 +44,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 
         playerRigidbody = GetComponent<Rigidbody>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
 
         
 
@@ -63,12 +69,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (inRange)
             {
-                isRope = true;
-
-
-                //Instantiate(rope);
-
-                
+              
 
                 Connect();
             }
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
             isHinge = false;
             Destroy(hj);
 
-            isRope = false;
+            
 
             Destroy(GameObject.FindGameObjectWithTag("Rope"));
         }
@@ -90,9 +91,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Connect()
     {
-        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple Point");
-
-
         grappleDistance = Vector3.Distance(grapplePoint.transform.position, transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
@@ -101,29 +99,46 @@ public class PlayerMovement : MonoBehaviour {
 
         GetComponent<HingeJoint>().connectedBody = grapplePoint.GetComponent<Rigidbody>();
 
-        GetComponent<HingeJoint>().anchor = new Vector3(0.0f, grappleDistance, 0.0f);
+        GetComponent<HingeJoint>().anchor = new Vector3(0.0f, y: grappleDistance, z: 0.0f);
 
         GetComponent<HingeJoint>().connectedAnchor = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        inRange = true;
-
-        if(GetComponent<HingeJoint>() == true)
+        if(other.CompareTag("Grapple Point"))
+        {
+            inRange = true;
+            print(inRange);
             grapplePoint = other.gameObject;
-            //GetComponent<HingeJoint>().connectedBody = other.GetComponent<Rigidbody>();
+            other.GetComponent<Renderer>().material = inRangeMaterial;
+            other.GetComponentInParent<Renderer>().material = inRangeMaterial;
+        }
+        else
+        {
+
+            print("Reset");
+            transform.position = startPosition;
+            playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+            transform.rotation = startRotation;
+            
+        }
+        
+
+        
+         
 
 
-        grapplePoint = other.gameObject;
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         inRange = false;
+        other.GetComponent<Renderer>().material = outOfRangeMaterial;
+        other.GetComponentInParent<Renderer>().material = outOfRangeMaterial;
 
-        
     }
 
 
