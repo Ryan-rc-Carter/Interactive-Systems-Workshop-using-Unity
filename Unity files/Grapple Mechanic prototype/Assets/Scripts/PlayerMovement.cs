@@ -91,6 +91,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Connect()
     {
+        
+
         grappleDistance = Vector3.Distance(grapplePoint.transform.position, transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
@@ -112,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
             print(inRange);
             grapplePoint = other.gameObject;
             other.GetComponent<Renderer>().material = inRangeMaterial;
-            other.GetComponentInParent<Renderer>().material = inRangeMaterial;
+            other.GetComponent<Light>().color = Color.blue;
         }
         else
         {
@@ -137,7 +139,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         inRange = false;
         other.GetComponent<Renderer>().material = outOfRangeMaterial;
-        other.GetComponentInParent<Renderer>().material = outOfRangeMaterial;
+        other.GetComponent<Light>().color = Color.red;
+
 
     }
 
