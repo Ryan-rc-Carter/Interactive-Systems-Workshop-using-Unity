@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
+
         inRange = false;
         other.GetComponent<Renderer>().material = outOfRangeMaterial;
         other.GetComponent<Light>().color = Color.red;

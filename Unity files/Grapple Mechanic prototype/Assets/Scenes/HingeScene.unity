@@ -240,7 +240,7 @@ Prefab:
     - target: {fileID: 114469638515234344, guid: 2fb9e3faa9e9cab43a6521402a254dae,
         type: 2}
       propertyPath: spawnAmount
-      value: 6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 65376648601196332, guid: 2fb9e3faa9e9cab43a6521402a254dae,
         type: 2}
@@ -612,10 +612,10 @@ MeshCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 625359099}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &852973228
 Transform:
   m_ObjectHideFlags: 0
@@ -6047,10 +6047,10 @@ MeshCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1880030620}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -6155,6 +6155,11 @@ Prefab:
     - target: {fileID: 4937758787676430, guid: 34753846988f1ff49a6d8d375a20604a, type: 2}
       propertyPath: m_LocalScale.x
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 65379399560787392, guid: 34753846988f1ff49a6d8d375a20604a,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34753846988f1ff49a6d8d375a20604a, type: 2}
