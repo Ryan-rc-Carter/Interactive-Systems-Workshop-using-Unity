@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grapple Point
   - Rope
+  - Obstacle
   layers:
   - Default
   - TransparentFX

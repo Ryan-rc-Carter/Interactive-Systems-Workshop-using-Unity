@@ -116,7 +116,8 @@ public class PlayerMovement : MonoBehaviour {
             other.GetComponent<Renderer>().material = inRangeMaterial;
             other.GetComponent<Light>().color = Color.blue;
         }
-        else
+        
+        if(other.CompareTag("Obstacle"))
         {
 
             print("Reset");
@@ -126,23 +127,17 @@ public class PlayerMovement : MonoBehaviour {
             transform.rotation = startRotation;
             
         }
-        
-
-        
-         
-
-
-
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Grapple Point"))
+        {
+            inRange = false;
+            other.GetComponent<Renderer>().material = outOfRangeMaterial;
+            other.GetComponent<Light>().color = Color.red;
 
-        inRange = false;
-        other.GetComponent<Renderer>().material = outOfRangeMaterial;
-        other.GetComponent<Light>().color = Color.red;
-
-
+        }
     }
 
 

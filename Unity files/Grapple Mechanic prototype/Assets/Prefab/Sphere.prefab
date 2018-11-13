@@ -30,7 +30,7 @@ GameObject:
   m_TagString: Grapple Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1787404656476816
 GameObject:
@@ -47,7 +47,7 @@ GameObject:
   m_TagString: Grapple Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4178168516172022
 Transform:
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332595567894936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2829609, y: 29.587162, z: 7.928959}
+  m_LocalPosition: {x: -58.541145, y: -11.730001, z: 48.379997}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4178168516172022}
