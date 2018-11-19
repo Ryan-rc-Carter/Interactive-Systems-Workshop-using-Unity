@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private HingeJoint hj;
 
+    public LineRenderer line;
+
 
     private GameObject grapplePoint;
 
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
     private Quaternion startRotation;
     public Material inRangeMaterial;
     public Material outOfRangeMaterial;
+    private Transform grapplePointLocation;
 
 
 
@@ -48,6 +51,8 @@ public class PlayerMovement : MonoBehaviour {
         startPosition = transform.position;
         startRotation = transform.rotation;
 
+        line.enabled = false;
+
         
 
    
@@ -64,14 +69,14 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidbody.AddForce(0.0f, 0.0f, z);
 
 
-
         if (Input.GetKeyDown("space"))
         {
             if (inRange)
             {
-              
-
+                line.enabled = true;
+                
                 Connect();
+                line.SetPosition(1, grapplePointLocation.position);
             }
         }
         else if (Input.GetKeyUp("space"))
@@ -79,9 +84,10 @@ public class PlayerMovement : MonoBehaviour {
             isHinge = false;
             Destroy(hj);
 
-            
+            line.enabled = false;
 
             Destroy(GameObject.FindGameObjectWithTag("Rope"));
+
         }
 
 
@@ -90,10 +96,13 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Connect()
-    {
-        
+    {       
 
         grappleDistance = Vector3.Distance(grapplePoint.transform.position, transform.position);
+
+
+
+        line.SetPosition(1, grapplePoint.transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
 
@@ -110,11 +119,16 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(other.CompareTag("Grapple Point"))
         {
+            print(other);
+            
             inRange = true;
             print(inRange);
             grapplePoint = other.gameObject;
             other.GetComponent<Renderer>().material = inRangeMaterial;
             other.GetComponent<Light>().color = Color.blue;
+            grapplePointLocation = other.transform.GetComponentInChildren<Transform>();
+
+
         }
         
         if(other.CompareTag("Obstacle"))
