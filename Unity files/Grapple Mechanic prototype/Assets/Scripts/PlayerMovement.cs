@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
     private Transform grapplePointLocation;
     public Transform eField;
     private Vector3 eFieldStart;
+    public GameObject barrier;
 
 
 
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour {
                 
                 Connect();
                 line.SetPosition(1, grapplePointLocation.position);
+                
             }
         }
         else if (Input.GetKeyUp("space"))
@@ -125,9 +127,11 @@ public class PlayerMovement : MonoBehaviour {
             inRange = true;
             print(inRange);
             grapplePoint = other.gameObject;
+            
             other.GetComponent<Renderer>().material = inRangeMaterial;
             other.GetComponent<Light>().color = Color.blue;
             grapplePointLocation = other.transform.GetComponentInChildren<Transform>();
+            
 
 
         }
@@ -141,8 +145,18 @@ public class PlayerMovement : MonoBehaviour {
             playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
             transform.rotation = startRotation;
             eField.position = eFieldStart;
-            SendMessage("Reset");
+            barrier.SendMessage("Reset");
 
+        }
+
+        if (other.CompareTag("Finish"))
+        {
+            transform.position = startPosition;
+            playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+            transform.rotation = startRotation;
+            eField.position = eFieldStart;
+            barrier.SendMessage("Reset");
         }
     }
 
