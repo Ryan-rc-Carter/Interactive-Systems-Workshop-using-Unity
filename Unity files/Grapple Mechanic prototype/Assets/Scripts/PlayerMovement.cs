@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour {
     public Material inRangeMaterial;
     public Material outOfRangeMaterial;
     private Transform grapplePointLocation;
+    public Transform eField;
+    private Vector3 eFieldStart;
 
 
 
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 
         line.enabled = false;
 
-        
+        eFieldStart = eField.transform.position;
 
    
 		
@@ -119,7 +121,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(other.CompareTag("Grapple Point"))
         {
-            print(other);
             
             inRange = true;
             print(inRange);
@@ -139,7 +140,9 @@ public class PlayerMovement : MonoBehaviour {
             playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
             transform.rotation = startRotation;
-            
+            eField.position = eFieldStart;
+            SendMessage("Reset");
+
         }
     }
 

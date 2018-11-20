@@ -279,7 +279,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -332,7 +332,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -971,7 +971,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4901,7 +4901,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4954,7 +4954,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5593,7 +5593,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9603,7 +9603,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9656,7 +9656,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10295,7 +10295,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -14474,7 +14474,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14527,7 +14527,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15166,7 +15166,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -18939,7 +18939,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4901656152690028, guid: 392e8513cb332e54fb14cefd0cc0844d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -11.618282
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 4901656152690028, guid: 392e8513cb332e54fb14cefd0cc0844d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -19429,7 +19429,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4901656152690028, guid: 392e8513cb332e54fb14cefd0cc0844d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 64.84596
+      value: 71.58
       objectReference: {fileID: 0}
     - target: {fileID: 4901656152690028, guid: 392e8513cb332e54fb14cefd0cc0844d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -19712,7 +19712,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -19765,7 +19765,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20404,7 +20404,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -24612,7 +24612,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -24665,7 +24665,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -25304,7 +25304,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -33911,7 +33911,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -33964,7 +33964,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -34603,7 +34603,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -38528,7 +38528,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -38581,7 +38581,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -39220,7 +39220,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -43145,7 +43145,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -43198,7 +43198,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -43837,7 +43837,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -47660,7 +47660,6 @@ GameObject:
   - component: {fileID: 1193286921}
   - component: {fileID: 1193286920}
   - component: {fileID: 1193286924}
-  - component: {fileID: 1193286925}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -47725,7 +47724,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1193286919}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 1.79, y: 33.68, z: -12.7}
+  m_LocalPosition: {x: -0.25, y: 41.1, z: -13.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47744,20 +47743,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1769744198}
   displacementX: 0
-  displacementY: -5
-  displacementZ: 5
---- !u!135 &1193286925
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1193286919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  displacementY: -40
+  displacementZ: 15
+  rotSpeed: 5
 --- !u!1 &1379017320 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
@@ -47788,24 +47776,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4901656152690028, guid: 392e8513cb332e54fb14cefd0cc0844d,
     type: 2}
   m_PrefabInternal: {fileID: 1605187956}
---- !u!1 &1425411064 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
-  m_PrefabInternal: {fileID: 2017974770}
---- !u!64 &1425411068
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1425411064}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
 --- !u!1 &1551590931
 GameObject:
   m_ObjectHideFlags: 0
@@ -48311,7 +48281,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -48364,7 +48334,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -49003,7 +48973,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -52767,6 +52737,10 @@ ParticleSystem:
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
   m_PrefabInternal: {fileID: 2017974770}
+--- !u!4 &1642082553 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400004, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
+  m_PrefabInternal: {fileID: 2017974770}
 --- !u!95 &1642082554
 Animator:
   serializedVersion: 3
@@ -52954,6 +52928,7 @@ MonoBehaviour:
   line: {fileID: 1551590933}
   inRangeMaterial: {fileID: 2100000, guid: e0dffdb4497c3084b9b04b0f70f682ba, type: 2}
   outOfRangeMaterial: {fileID: 2100000, guid: dd11f4962804ca44495f4b29fe18da98, type: 2}
+  eField: {fileID: 1642082553}
   speed: 5
 --- !u!4 &1876881958 stripped
 Transform:
@@ -53273,7 +53248,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -53326,7 +53301,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -53965,7 +53940,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -57828,11 +57803,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.392
+      value: 0.717
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
@@ -58002,7 +57981,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -58055,7 +58034,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -58694,7 +58673,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
