@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
    
     private bool inRange = false;
 
-    private float grappleDistance = 0.5f;
+    private float grappleDistance;
 
 
     GameObject closest = null;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
     private Quaternion startRotation;
     public Material inRangeMaterial;
     public Material outOfRangeMaterial;
-    private Transform grapplePointLocation;
+    private Vector3 grapplePointLocation;
     public Transform eField;
     private Vector3 eFieldStart;
     public GameObject barrier;
@@ -58,6 +58,11 @@ public class PlayerMovement : MonoBehaviour {
 
         eFieldStart = eField.transform.position;
 
+        hj = GetComponent<HingeJoint>();
+        hj.breakForce = 0.0f;
+
+
+
    
 		
 	}
@@ -79,18 +84,22 @@ public class PlayerMovement : MonoBehaviour {
                 line.enabled = true;
                 
                 Connect();
-                line.SetPosition(1, grapplePointLocation.position);
+                line.SetPosition(1, grapplePointLocation);
                 
             }
         }
         else if (Input.GetKeyUp("space"))
         {
-            isHinge = false;
-            Destroy(hj);
+            if (hj != null)
+            {
+                GetComponent<HingeJoint>().autoConfigureConnectedAnchor = true;
+                GetComponent<HingeJoint>().connectedBody = null;
+                hj.breakForce = 0.01f;
 
-            line.enabled = false;
+                line.enabled = false;
+                grappleDistance = 0.0f;
 
-            Destroy(GameObject.FindGameObjectWithTag("Rope"));
+            }
 
         }
 
@@ -102,11 +111,10 @@ public class PlayerMovement : MonoBehaviour {
     private void Connect()
     {       
 
-        grappleDistance = Vector3.Distance(grapplePoint.transform.position, transform.position);
-
-
-
-        line.SetPosition(1, grapplePoint.transform.position);
+        grappleDistance = Vector3.Distance(transform.position, grapplePoint.transform.position);
+       
+        
+        //line.SetPosition(1, grapplePoint.transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
 
@@ -130,21 +138,28 @@ public class PlayerMovement : MonoBehaviour {
             
             other.GetComponent<Renderer>().material = inRangeMaterial;
             other.GetComponent<Light>().color = Color.blue;
-            grapplePointLocation = other.transform.GetComponentInChildren<Transform>();
-            
+            grapplePointLocation = other.transform.GetComponentInChildren<Transform>().position;
+
+            Vector3 difference = grapplePointLocation - transform.position;
+
+            difference.Normalize();
+
+            float rotationX = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            Quaternion newRotation = Quaternion.Euler(new Vector3(rotationX, 0.0f, 0.0f));
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime);
 
 
         }
         
         if(other.CompareTag("Obstacle"))
         {
-
+            eField.position = eFieldStart;
             print("Reset");
             transform.position = startPosition;
             playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
             transform.rotation = startRotation;
-            eField.position = eFieldStart;
+            
             barrier.SendMessage("Reset");
 
         }
@@ -171,6 +186,10 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void getRotation()
+    {
+        
+    }
 
 
 }

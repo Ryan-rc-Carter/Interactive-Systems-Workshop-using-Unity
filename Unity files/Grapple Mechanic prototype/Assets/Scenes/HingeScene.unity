@@ -47723,13 +47723,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1193286919}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.12278779, y: -0.6963643, z: 0.12278779, w: 0.6963643}
   m_LocalPosition: {x: -0.25, y: 41.1, z: -13.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: -90, z: 0}
 --- !u!114 &1193286924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47742,8 +47742,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1769744198}
-  displacementX: 0
-  displacementY: -40
+  displacementX: 40
+  displacementY: 0
   displacementZ: 15
   rotSpeed: 5
 --- !u!1 &1379017320 stripped
@@ -52831,6 +52831,7 @@ GameObject:
   - component: {fileID: 1769744195}
   - component: {fileID: 1769744194}
   - component: {fileID: 1769744199}
+  - component: {fileID: 1769744200}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -52940,6 +52941,40 @@ MonoBehaviour:
   eField: {fileID: 1642082553}
   barrier: {fileID: 1642082552}
   speed: 5
+--- !u!59 &1769744200
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769744193}
+  m_ConnectedBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0.5, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: 41.16, z: -2.44}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!4 &1876881958 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4937758787676430, guid: 34753846988f1ff49a6d8d375a20604a,
@@ -57817,7 +57852,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: b3760c1ea40dd5c45b43f4d6738ad385, type: 3}
       propertyPath: m_TagString
