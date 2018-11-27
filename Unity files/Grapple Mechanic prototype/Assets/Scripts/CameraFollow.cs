@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotSpeed, Vector3.up) * offset;
+        //offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotSpeed, Vector3.up) * offset;
         transform.position = player.position + offset;
         transform.LookAt(player.position);
 

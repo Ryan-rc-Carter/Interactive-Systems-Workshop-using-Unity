@@ -112,8 +112,9 @@ public class PlayerMovement : MonoBehaviour {
     {       
 
         grappleDistance = Vector3.Distance(transform.position, grapplePoint.transform.position);
-       
-        
+
+        Vector3 loc = (grapplePoint.transform.position - transform.position);//.normalized * grappleDistance;
+
         //line.SetPosition(1, grapplePoint.transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
@@ -122,9 +123,10 @@ public class PlayerMovement : MonoBehaviour {
 
         GetComponent<HingeJoint>().connectedBody = grapplePoint.GetComponent<Rigidbody>();
 
-        GetComponent<HingeJoint>().anchor = new Vector3(0.0f, y: grappleDistance, z: 0.0f);
+        GetComponent<HingeJoint>().anchor = loc;// new Vector3(0.0f, grapplePointLocation.y, grapplePointLocation.z);
 
         GetComponent<HingeJoint>().connectedAnchor = new Vector3(0.0f, 0.0f, 0.0f);
+        Debug.Log("Trigered");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -139,28 +141,30 @@ public class PlayerMovement : MonoBehaviour {
             other.GetComponent<Renderer>().material = inRangeMaterial;
             other.GetComponent<Light>().color = Color.blue;
             grapplePointLocation = other.transform.GetComponentInChildren<Transform>().position;
+            //grapplePointLocation = other.transform.position;
 
-            Vector3 difference = grapplePointLocation - transform.position;
+            int purp = 1;
+            //Vector3 difference = grapplePointLocation - transform.position;
 
-            difference.Normalize();
+            //difference.Normalize();
 
-            float rotationX = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            Quaternion newRotation = Quaternion.Euler(new Vector3(rotationX, 0.0f, 0.0f));
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime);
+            //float rotationX = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            //Quaternion newRotation = Quaternion.Euler(new Vector3(rotationX, 0.0f, 0.0f));
+            //transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime);
 
 
         }
         
         if(other.CompareTag("Obstacle"))
         {
-            eField.position = eFieldStart;
-            print("Reset");
-            transform.position = startPosition;
-            playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-            transform.rotation = startRotation;
+            //eField.position = eFieldStart;
+            //print("Reset");
+            //transform.position = startPosition;
+            //playerRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            //playerRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+            //transform.rotation = startRotation;
             
-            barrier.SendMessage("Reset");
+            //barrier.SendMessage("Reset");
 
         }
 
