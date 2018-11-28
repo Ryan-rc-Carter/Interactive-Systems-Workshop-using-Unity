@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour {
     public Transform eField;
     private Vector3 eFieldStart;
     public GameObject barrier;
+    public GameObject test;
+    private bool instantiated = false;
+
+    private Vector3 loc;
 
 
 
@@ -70,6 +74,9 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //if (inRange)
+            //loc = (grapplePoint.transform.position - transform.position);
+
 
         float z = Input.GetAxis("Vertical") * speed;
 
@@ -81,6 +88,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (inRange)
             {
+                loc = (grapplePoint.transform.position - transform.position);
+
                 line.enabled = true;
                 
                 Connect();
@@ -95,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
                 GetComponent<HingeJoint>().autoConfigureConnectedAnchor = true;
                 GetComponent<HingeJoint>().connectedBody = null;
                 hj.breakForce = 0.01f;
+                instantiated = false;
 
                 line.enabled = false;
                 grappleDistance = 0.0f;
@@ -113,20 +123,26 @@ public class PlayerMovement : MonoBehaviour {
 
         grappleDistance = Vector3.Distance(transform.position, grapplePoint.transform.position);
 
-        Vector3 loc = (grapplePoint.transform.position - transform.position);//.normalized * grappleDistance;
+        //Vector3 loc = (grapplePoint.transform.position - transform.position);//.normalized * grappleDistance;
 
         //line.SetPosition(1, grapplePoint.transform.position);
 
         hj = gameObject.AddComponent<HingeJoint>();
 
-        GetComponent<HingeJoint>().autoConfigureConnectedAnchor = false;
+        //GetComponent<HingeJoint>().autoConfigureConnectedAnchor = false;
 
         GetComponent<HingeJoint>().connectedBody = grapplePoint.GetComponent<Rigidbody>();
 
         GetComponent<HingeJoint>().anchor = loc;// new Vector3(0.0f, grapplePointLocation.y, grapplePointLocation.z);
 
-        GetComponent<HingeJoint>().connectedAnchor = new Vector3(0.0f, 0.0f, 0.0f);
-        Debug.Log("Trigered");
+        GetComponent<HingeJoint>().connectedAnchor = grapplePoint.transform.position;
+
+        if (!instantiated)
+        {
+            Instantiate(test, loc, transform.rotation);
+            instantiated = true;
+        }
+        Debug.Log("Triggered");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,7 +151,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             
             inRange = true;
-            print(inRange);
+            //print(inRange);
             grapplePoint = other.gameObject;
             
             other.GetComponent<Renderer>().material = inRangeMaterial;
@@ -183,6 +199,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (other.CompareTag("Grapple Point"))
         {
+
+            grapplePoint = null;
             inRange = false;
             other.GetComponent<Renderer>().material = outOfRangeMaterial;
             other.GetComponent<Light>().color = Color.red;
