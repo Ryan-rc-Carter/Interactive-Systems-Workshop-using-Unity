@@ -24,9 +24,9 @@ public class BarrierReset : MonoBehaviour {
         barrierRB.AddForce(0.0f, 0.0f, moveSpeed);
 	}
 
-    public void Reset()
+    void reset()
     {
-        transform.position = startPos;
+        
         barrierRB.velocity = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
