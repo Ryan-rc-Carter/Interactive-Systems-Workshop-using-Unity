@@ -7,17 +7,26 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField]
     private float speed = 5.0f;
 
+    [SerializeField]
+    private GameObject barrierObject;
+
     private Rigidbody self;
+    private Rigidbody barrier;
+    private Vector3 barrierTransform;
     private bool isInRange = false;
     private Transform m_colliderTransform;
     private Rigidbody m_colliderRigid;
     private HingeJoint hinge;
 
 
+
+
     // Use this for initialization
     void Start()
     {
         self = GetComponent<Rigidbody>();
+        barrier = barrierObject.GetComponent<Rigidbody>();
+        barrierTransform = barrierObject.transform.position;
     }
 
     // Update is called once per frame
@@ -46,30 +55,31 @@ public class PlayerBehaviour : MonoBehaviour {
             m_colliderTransform = other.GetComponent<Transform>();
             m_colliderRigid = other.GetComponent<Rigidbody>();
             m_colliderRigid.isKinematic = false;
+            if (other.GetComponent<Light>())
+            {
+                other.GetComponent<Light>().color = Color.blue;
+            }
             isInRange = true;
         }
         else
         {
-            SendMessage("reset");
+            SendMessage("Reset");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-
+        if (other.GetComponent<Light>())
+        {
+            other.GetComponent<Light>().color = Color.red;
+        }
         isInRange = false;
         m_colliderRigid.isKinematic = true;
     }
 
     private void Connect()
     {
-        if (!isInRange)
-        {
-            Debug.Log("NOT In range");
-            return;
-        }
-
-        Debug.Log("In range and triggered");
+              
 
         gameObject.AddComponent<HingeJoint>();
         hinge = transform.GetComponent<HingeJoint>();
@@ -85,5 +95,6 @@ public class PlayerBehaviour : MonoBehaviour {
     private void Reset()
     {
         self.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        barrier.velocity = new Vector3(0.0f, 0.0f, 0.0f);
     }
 }

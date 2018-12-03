@@ -18,7 +18,7 @@ public class ResetLevel : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	private void reset () {
+	private void Reset () {
         player.position = playerResetLocation;
         
         barrier.position = barrierResetLocation;

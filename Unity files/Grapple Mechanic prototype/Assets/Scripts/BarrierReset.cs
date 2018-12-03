@@ -24,10 +24,10 @@ public class BarrierReset : MonoBehaviour {
         barrierRB.AddForce(0.0f, 0.0f, moveSpeed);
 	}
 
-    void reset()
+    /*void reset()
     {
         
         barrierRB.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-    }
+    }*/
 
 }
