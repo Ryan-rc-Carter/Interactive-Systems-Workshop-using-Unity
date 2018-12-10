@@ -10,6 +10,12 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField]
     private GameObject barrierObject;
 
+    [SerializeField]
+    private AudioClip attach;
+
+    [SerializeField]
+    private AudioClip detach;
+
     private Rigidbody self;
     private Rigidbody barrier;
     private Vector3 barrierTransform;
@@ -17,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private Transform m_colliderTransform;
     private Rigidbody m_colliderRigid;
     private HingeJoint hinge;
+    private AudioSource playerSound;
+    private bool connected = false;
 
 
 
@@ -24,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
         barrier = barrierObject.GetComponent<Rigidbody>();
         barrierTransform = barrierObject.transform.position;
@@ -36,14 +45,14 @@ public class PlayerBehaviour : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
-            Connect();
+            if(isInRange)
+                Connect();
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            
-            DisConnect();
+            if(isInRange)
+                DisConnect();
         }
     }
 
@@ -69,27 +78,40 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Light>())
+        if (connected)
         {
-            other.GetComponent<Light>().color = Color.red;
+            if (other.GetComponent<Light>())
+            {
+                other.GetComponent<Light>().color = Color.red;
+            }
+            isInRange = false;
+            m_colliderRigid.isKinematic = true;
         }
-        isInRange = false;
-        m_colliderRigid.isKinematic = true;
+        else
+        {
+            return;
+        }
     }
 
     private void Connect()
     {
-              
+        playerSound.clip = attach;
+        playerSound.Play();
 
         gameObject.AddComponent<HingeJoint>();
         hinge = transform.GetComponent<HingeJoint>();
         hinge.connectedBody = m_colliderRigid;
         hinge.enablePreprocessing = false;
+
+        connected = true;
     }
 
     private void DisConnect()
     {
         Destroy(transform.GetComponent<HingeJoint>());
+        playerSound.clip = detach;
+        playerSound.Play();
+        connected = false;
     }
 
     private void Reset()
