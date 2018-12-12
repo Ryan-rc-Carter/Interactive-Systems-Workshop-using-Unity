@@ -25,6 +25,12 @@ public class PlayerBehaviour : MonoBehaviour {
     private HingeJoint hinge;
     private AudioSource playerSound;
     private bool connected = false;
+    private bool canConnect = false;
+
+    private TrailRenderer trail;
+
+
+
 
 
 
@@ -35,7 +41,9 @@ public class PlayerBehaviour : MonoBehaviour {
         playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
         barrier = barrierObject.GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
         barrierTransform = barrierObject.transform.position;
+        
     }
 
     // Update is called once per frame
@@ -43,10 +51,14 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         self.AddForce(0.0f, 0.0f, Input.GetAxis("Horizontal") * speed);
 
+
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isInRange)
-                Connect();
+                if(!connected)
+                    Connect();
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -60,7 +72,7 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         if (other.CompareTag("Grapple Point"))
         {
-
+            canConnect = true;
             m_colliderTransform = other.GetComponent<Transform>();
             m_colliderRigid = other.GetComponent<Rigidbody>();
             m_colliderRigid.isKinematic = false;
@@ -72,14 +84,17 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         else
         {
+            connected = false;
+            DisConnect();
             SendMessage("Reset");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (connected)
+        if (!connected)
         {
+            canConnect = false;
             if (other.GetComponent<Light>())
             {
                 other.GetComponent<Light>().color = Color.red;
@@ -87,31 +102,35 @@ public class PlayerBehaviour : MonoBehaviour {
             isInRange = false;
             m_colliderRigid.isKinematic = true;
         }
-        else
-        {
-            return;
-        }
     }
 
     private void Connect()
     {
-        playerSound.clip = attach;
-        playerSound.Play();
+        if (canConnect)
+        {
+            speed = 10.0f;
+            playerSound.clip = attach;
+            playerSound.Play();
 
-        gameObject.AddComponent<HingeJoint>();
-        hinge = transform.GetComponent<HingeJoint>();
-        hinge.connectedBody = m_colliderRigid;
-        hinge.enablePreprocessing = false;
+            gameObject.AddComponent<HingeJoint>();
+            hinge = transform.GetComponent<HingeJoint>();
+            hinge.connectedBody = m_colliderRigid;
+            hinge.enablePreprocessing = false;
 
-        connected = true;
+            connected = true;
+        }
     }
 
     private void DisConnect()
     {
-        Destroy(transform.GetComponent<HingeJoint>());
-        playerSound.clip = detach;
-        playerSound.Play();
-        connected = false;
+        if (canConnect)
+        {
+            speed = 5.0f;
+            Destroy(transform.GetComponent<HingeJoint>());
+            playerSound.clip = detach;
+            playerSound.Play();
+            connected = false;
+        }
     }
 
     private void Reset()
