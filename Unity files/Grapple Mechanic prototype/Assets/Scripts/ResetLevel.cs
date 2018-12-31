@@ -8,12 +8,10 @@ public class ResetLevel : MonoBehaviour {
     private Vector3 barrierResetLocation;
 
     public Transform player;
-    public Transform barrier;
 
 	// Use this for initialization
 	void Start () {
         playerResetLocation = player.position;
-        barrierResetLocation = barrier.position;
 		
 	}
 	
@@ -21,6 +19,5 @@ public class ResetLevel : MonoBehaviour {
 	private void Reset () {
         player.position = playerResetLocation;
         
-        barrier.position = barrierResetLocation;
 	}
 }

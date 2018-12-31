@@ -17,8 +17,6 @@ public class PlayerBehaviour : MonoBehaviour {
     private AudioClip detach;
 
     private Rigidbody self;
-    private Rigidbody barrier;
-    private Vector3 barrierTransform;
     private bool isInRange = false;
     private Transform m_colliderTransform;
     private Rigidbody m_colliderRigid;
@@ -27,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private bool connected = false;
     private bool canConnect = false;
 
-    private TrailRenderer trail;
+    private ParticleSystem trail;
 
 
 
@@ -40,9 +38,12 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
-        barrier = barrierObject.GetComponent<Rigidbody>();
-        trail = GetComponent<TrailRenderer>();
-        barrierTransform = barrierObject.transform.position;
+
+        
+        
+
+        trail = GetComponent<ParticleSystem>();
+        trail.Stop();
         
     }
 
@@ -111,11 +112,14 @@ public class PlayerBehaviour : MonoBehaviour {
             speed = 10.0f;
             playerSound.clip = attach;
             playerSound.Play();
+            trail.Play();
 
             gameObject.AddComponent<HingeJoint>();
             hinge = transform.GetComponent<HingeJoint>();
             hinge.connectedBody = m_colliderRigid;
             hinge.enablePreprocessing = false;
+
+            
 
             connected = true;
         }
@@ -130,12 +134,14 @@ public class PlayerBehaviour : MonoBehaviour {
             playerSound.clip = detach;
             playerSound.Play();
             connected = false;
+            trail.Stop();
+
+
         }
     }
 
     private void Reset()
     {
         self.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-        barrier.velocity = new Vector3(0.0f, 0.0f, 0.0f);
     }
 }
