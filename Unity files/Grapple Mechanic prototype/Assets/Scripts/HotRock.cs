@@ -21,21 +21,20 @@ public class HotRock : MonoBehaviour {
         hotRock.AddForce(Vector3.up * force, ForceMode.Impulse);
         Invoke("VelocityCheckEnabled", 0.1f);
         resetVelocity = new Vector3(0, 0, 0);
+        Invoke("Drop", 3.0f);
         Invoke("Destroy", 10);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+    }
 
-        if (checkVelocity == true)
-        {
-            if (hotRock.velocity == resetVelocity)
-            {
-                hotRock.mass = 100;
-            }
-        }
-	}
+        
+                
+            
+        
+	
 
     void VelocityCheckEnabled()
     {
