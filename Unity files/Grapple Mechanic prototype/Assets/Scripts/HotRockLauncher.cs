@@ -5,18 +5,23 @@ using UnityEngine;
 public class HotRockLauncher : MonoBehaviour {
 
     public GameObject hotRock;
-    private Transform spawnLocation;
-    public float spawnTime = 4.0f;
+    private Transform spawnPointTransform;
+    private Vector3 spawnPointVector;
+    public float spawnTimeMax = 4.0f;
+    private float spawnTime;
 
 	// Use this for initialization
 	void Start () {
-        spawnLocation = GetComponent<Transform>();
+        spawnPointTransform = GetComponent<Transform>();
+        spawnPointVector = new Vector3(spawnPointTransform.position.x, spawnPointTransform.position.y, spawnPointTransform.position.z);
+        spawnTime = Random.Range(1, spawnTimeMax);
+        
         Invoke("Launch", spawnTime);
 	}
 	
 	// Update is called once per frame
 	void Launch () {
-        Instantiate(hotRock, spawnLocation,true);
+        Instantiate(hotRock, spawnPointVector, spawnPointTransform.rotation);
         Invoke("Launch", spawnTime);
     }
 

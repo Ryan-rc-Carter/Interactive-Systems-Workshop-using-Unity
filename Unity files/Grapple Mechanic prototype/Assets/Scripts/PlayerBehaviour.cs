@@ -27,6 +27,20 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private ParticleSystem trail;
 
+    [SerializeField]
+    private Sprite lifeloss;
+
+    private bool LevelFinished;
+
+    public GameObject life1;
+    public GameObject life2;
+    public GameObject life3;
+    public GameObject life4;
+    public GameObject life5;
+
+
+    private int life  = 5;
+
 
 
 
@@ -38,7 +52,7 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
-
+        LevelFinished = false;
         
         
 
@@ -52,6 +66,14 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         self.AddForce(0.0f, 0.0f, Input.GetAxis("Horizontal") * speed);
 
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            trail.Play();
+        }
+        else
+        {
+            trail.Stop();
+        }
 
 
 
@@ -83,12 +105,17 @@ public class PlayerBehaviour : MonoBehaviour {
             }
             isInRange = true;
         }
-        else
+        else if (other.CompareTag("Finish"))
+        {
+            LevelFinished = true;
+        }
+        else 
         {
             connected = false;
             DisConnect();
             SendMessage("Reset");
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -112,7 +139,7 @@ public class PlayerBehaviour : MonoBehaviour {
             speed = 10.0f;
             playerSound.clip = attach;
             playerSound.Play();
-            trail.Play();
+            //trail.Play();
 
             gameObject.AddComponent<HingeJoint>();
             hinge = transform.GetComponent<HingeJoint>();
@@ -134,7 +161,7 @@ public class PlayerBehaviour : MonoBehaviour {
             playerSound.clip = detach;
             playerSound.Play();
             connected = false;
-            trail.Stop();
+            //trail.Stop();
 
 
         }
