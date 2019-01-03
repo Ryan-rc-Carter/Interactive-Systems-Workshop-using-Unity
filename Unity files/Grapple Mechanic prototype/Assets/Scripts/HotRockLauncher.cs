@@ -13,7 +13,7 @@ public class HotRockLauncher : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         spawnPointTransform = GetComponent<Transform>();
-        spawnPointVector = new Vector3(spawnPointTransform.position.x, spawnPointTransform.position.y, spawnPointTransform.position.z);
+        spawnPointVector = new Vector3(spawnPointTransform.position.x + Random.Range(0,5), spawnPointTransform.position.y, spawnPointTransform.position.z + Random.Range(0,5));
         spawnTime = Random.Range(1, spawnTimeMax);
         
         Invoke("Launch", spawnTime);
@@ -22,6 +22,8 @@ public class HotRockLauncher : MonoBehaviour {
 	// Update is called once per frame
 	void Launch () {
         Instantiate(hotRock, spawnPointVector, spawnPointTransform.rotation);
+        spawnPointVector = new Vector3(spawnPointTransform.position.x + Random.Range(0, 5), spawnPointTransform.position.y, spawnPointTransform.position.z + Random.Range(0, 5));
+
         Invoke("Launch", spawnTime);
     }
 

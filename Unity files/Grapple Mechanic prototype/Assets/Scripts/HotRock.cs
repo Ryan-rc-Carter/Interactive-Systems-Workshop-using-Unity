@@ -21,6 +21,7 @@ public class HotRock : MonoBehaviour {
         hotRock.AddForce(Vector3.up * force, ForceMode.Impulse);
         Invoke("VelocityCheckEnabled", 0.1f);
         resetVelocity = new Vector3(0, 0, 0);
+        Invoke("Destroy", 10);
 
 	}
 	
@@ -31,7 +32,7 @@ public class HotRock : MonoBehaviour {
         {
             if (hotRock.velocity == resetVelocity)
             {
-                hotRock.drag = 0;
+                hotRock.mass = 100;
             }
         }
 	}
@@ -39,5 +40,10 @@ public class HotRock : MonoBehaviour {
     void VelocityCheckEnabled()
     {
         checkVelocity = true;
+    }
+
+    void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
