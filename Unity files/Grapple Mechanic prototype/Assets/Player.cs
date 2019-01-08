@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private bool isInRange = false;
-    private Transform m_colliderTransform;
-    private Rigidbody m_colliderRigid;
+    private Transform colliderTransform;
+    private Rigidbody colliderRigid;
     private HingeJoint hinge;
 
     // Use this for initialization
@@ -37,9 +37,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            m_colliderTransform = other.GetComponent<Transform>();
-            m_colliderRigid = other.GetComponent<Rigidbody>();
-            m_colliderRigid.isKinematic = false;
+            colliderTransform = other.GetComponent<Transform>();
+            colliderRigid = other.GetComponent<Rigidbody>();
+           colliderRigid.isKinematic = false;
 
             isInRange = true;
 
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         isInRange = false;
-        m_colliderRigid.isKinematic = true;
+        colliderRigid.isKinematic = true;
     }
 
     private void Connect()
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         gameObject.AddComponent<HingeJoint>();
         hinge = transform.GetComponent<HingeJoint>();
 
-        hinge.connectedBody = m_colliderRigid;
+        hinge.connectedBody = colliderRigid;
         hinge.enablePreprocessing = false;
     }
 

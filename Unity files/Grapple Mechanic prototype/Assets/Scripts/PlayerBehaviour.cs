@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour {
 
@@ -16,14 +18,18 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField]
     private AudioClip detach;
 
+    [SerializeField]
+    private AudioClip fail;
+
     private Rigidbody self;
     private bool isInRange = false;
-    private Transform m_colliderTransform;
+    private Transform m_colliderTransform = null;
     private Rigidbody m_colliderRigid;
     private HingeJoint hinge;
     private AudioSource playerSound;
     private bool connected = false;
     private bool canConnect = false;
+    private bool movementEnabled = true;
 
     private ParticleSystem trail;
 
@@ -32,14 +38,19 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private bool LevelFinished;
 
-    public GameObject life1;
-    public GameObject life2;
-    public GameObject life3;
-    public GameObject life4;
-    public GameObject life5;
+    public Image life1;
+    public Image life2;
+    public Image life3;
+    public Image life4;
+    public Image life5;
 
 
     private int life  = 5;
+
+    [SerializeField]
+    private GameObject gameOverSprite;
+    [SerializeField]
+    private GameObject next;
 
 
 
@@ -53,41 +64,78 @@ public class PlayerBehaviour : MonoBehaviour {
         playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
         LevelFinished = false;
-        
+        next.SetActive(false);
         
 
         trail = GetComponent<ParticleSystem>();
         trail.Stop();
+        gameOverSprite.SetActive(false);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        self.AddForce(0.0f, 0.0f, Input.GetAxis("Horizontal") * speed);
-
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        if (movementEnabled)
         {
-            trail.Play();
+            self.AddForce(0.0f, 0.0f, Input.GetAxis("Horizontal") * speed);
+
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                trail.Play();
+            }
+            else
+            {
+                trail.Stop();
+            }
+
+
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (isInRange)
+                    if (!connected)
+                        Connect();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (isInRange)
+                    DisConnect();
+            }
         }
-        else
-        {
-            trail.Stop();
+        switch (life) {
+            case 4:
+                life1.sprite = lifeloss;
+                break;
+            case 3:
+                life2.sprite = lifeloss;
+
+                break;
+            case 2:
+                life3.sprite = lifeloss;
+
+                break;
+            case 1:
+                life4.sprite = lifeloss;
+
+                break;
+            case 0:
+                life5.sprite = lifeloss;
+                gameOverSprite.SetActive(true);
+                movementEnabled = false;
+                break;
+            
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (LevelFinished)
         {
-            if(isInRange)
-                if(!connected)
-                    Connect();
-        }
+            if (Input.GetKey(KeyCode.E))
+            {
+                int randomLevel = Random.Range(1, 3);
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if(isInRange)
-                DisConnect();
+                SceneManager.LoadScene(randomLevel);
+            }
         }
     }
 
@@ -108,12 +156,26 @@ public class PlayerBehaviour : MonoBehaviour {
         else if (other.CompareTag("Finish"))
         {
             LevelFinished = true;
+            next.SetActive(true);
+
         }
         else 
         {
             connected = false;
             DisConnect();
-            SendMessage("Reset");
+            
+                life = life - 1;
+                print("Life Lost - " + life);
+                playerSound.clip = fail;
+                playerSound.Play();
+                if(life != 0)
+                    SendMessage("Reset");            
+                else
+                {
+                    gameOverSprite.SetActive(true);
+
+                    print("Game Over");
+                }
         }
         
     }
@@ -139,7 +201,6 @@ public class PlayerBehaviour : MonoBehaviour {
             speed = 10.0f;
             playerSound.clip = attach;
             playerSound.Play();
-            //trail.Play();
 
             gameObject.AddComponent<HingeJoint>();
             hinge = transform.GetComponent<HingeJoint>();
@@ -170,5 +231,6 @@ public class PlayerBehaviour : MonoBehaviour {
     private void Reset()
     {
         self.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+
     }
 }

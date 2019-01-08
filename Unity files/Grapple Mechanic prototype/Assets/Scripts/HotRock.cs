@@ -30,6 +30,11 @@ public class HotRock : MonoBehaviour {
 	void Update () {
     }
 
+    void Drop()
+    {
+        hotRock.mass = 100;
+    }
+
         
                 
             
