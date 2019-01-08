@@ -427,6 +427,8 @@ MonoBehaviour:
   attach: {fileID: 8300000, guid: 7995b8d6507a2fa40a35bd240493c09b, type: 3}
   detach: {fileID: 8300000, guid: 94d6c67fc301fb04f83155e83bbedf1f, type: 3}
   fail: {fileID: 8300000, guid: 0b0e73d5a58567244b2d478d9c73ad4d, type: 3}
+  score: {fileID: 0}
+  Highscore: {fileID: 0}
   lifeloss: {fileID: 21300000, guid: bd24215a4e43ea34f8b66b55245674d3, type: 3}
   life1: {fileID: 0}
   life2: {fileID: 0}

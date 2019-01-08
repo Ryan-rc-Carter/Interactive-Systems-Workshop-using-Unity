@@ -9,9 +9,11 @@ public class HotRock : MonoBehaviour {
     [SerializeField]
     private float force = 3.0f;
 
-    private bool checkVelocity = false;
+    
 
-    private Vector3 resetVelocity;
+    [SerializeField]
+    private float destroyTime = 4.0f;
+
 
 
 
@@ -19,10 +21,10 @@ public class HotRock : MonoBehaviour {
 	void Start () {
         hotRock = GetComponent<Rigidbody>();
         hotRock.AddForce(Vector3.up * force, ForceMode.Impulse);
-        Invoke("VelocityCheckEnabled", 0.1f);
-        resetVelocity = new Vector3(0, 0, 0);
+
+        
         Invoke("Drop", 3.0f);
-        Invoke("Destroy", 10);
+        Invoke("Destroy", destroyTime);
 
 	}
 	
@@ -41,10 +43,7 @@ public class HotRock : MonoBehaviour {
         
 	
 
-    void VelocityCheckEnabled()
-    {
-        checkVelocity = true;
-    }
+   
 
     void Destroy()
     {

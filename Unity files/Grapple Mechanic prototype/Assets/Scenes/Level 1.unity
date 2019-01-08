@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 1, g: 0.3254806, b: 0.0990566, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.002
@@ -863,6 +863,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114131634281627018, guid: f8fadfe1cc07be644b23023fa23601f1,
         type: 2}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 1361129445}
+    - target: {fileID: 114131634281627018, guid: f8fadfe1cc07be644b23023fa23601f1,
+        type: 2}
+      propertyPath: Highscore
+      value: 
+      objectReference: {fileID: 890239069}
+    - target: {fileID: 114131634281627018, guid: f8fadfe1cc07be644b23023fa23601f1,
+        type: 2}
       propertyPath: life1
       value: 
       objectReference: {fileID: 1879705041}
@@ -1276,6 +1286,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: -30, z: 0}
+--- !u!114 &890239069 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114562586072486822, guid: a894890ef60aca048b10d33266fd2ef3,
+    type: 2}
+  m_PrefabInternal: {fileID: 217758516}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!20 &930626333 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20251299996319888, guid: f8fadfe1cc07be644b23023fa23601f1,
@@ -1506,6 +1522,22 @@ Prefab:
     - target: {fileID: 4361535195215630, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
       propertyPath: m_RootOrder
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058190113992908, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -661.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058190113992908, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 264.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276121916916260, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -257.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276121916916260, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 264.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9600bf559a37c54aabe41da872ba6a2, type: 2}
@@ -1776,6 +1808,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 392e8513cb332e54fb14cefd0cc0844d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1361129445 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114903451464967870, guid: a894890ef60aca048b10d33266fd2ef3,
+    type: 2}
+  m_PrefabInternal: {fileID: 217758516}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1406080648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1825,7 @@ GameObject:
   - component: {fileID: 1406080649}
   - component: {fileID: 1406080651}
   - component: {fileID: 1406080650}
+  - component: {fileID: 1406080652}
   m_Layer: 0
   m_Name: Terrain (10)
   m_TagString: Untagged
@@ -1851,6 +1890,20 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1406080648}
+  m_Mesh: {fileID: 4300000, guid: 9c6f6f932ded5d042b63823062d581e1, type: 3}
+--- !u!64 &1406080652
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406080648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_SkinWidth: 0.001
   m_Mesh: {fileID: 4300000, guid: 9c6f6f932ded5d042b63823062d581e1, type: 3}
 --- !u!1 &1454909780
 GameObject:
@@ -1928,6 +1981,7 @@ GameObject:
   - component: {fileID: 1510443728}
   - component: {fileID: 1510443730}
   - component: {fileID: 1510443729}
+  - component: {fileID: 1510443731}
   m_Layer: 0
   m_Name: Terrain (9)
   m_TagString: Untagged
@@ -1992,6 +2046,20 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1510443727}
+  m_Mesh: {fileID: 4300000, guid: 9c6f6f932ded5d042b63823062d581e1, type: 3}
+--- !u!64 &1510443731
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510443727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_SkinWidth: 0.001
   m_Mesh: {fileID: 4300000, guid: 9c6f6f932ded5d042b63823062d581e1, type: 3}
 --- !u!114 &1613929350 stripped
 MonoBehaviour:

@@ -21,6 +21,12 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField]
     private AudioClip fail;
 
+    [SerializeField]
+    private Text score;
+
+    [SerializeField]
+    private Text Highscore;
+
     private Rigidbody self;
     private bool isInRange = false;
     private Transform m_colliderTransform = null;
@@ -45,12 +51,18 @@ public class PlayerBehaviour : MonoBehaviour {
     public Image life5;
 
 
-    private int life  = 5;
+    //private int life  = 5;
 
     [SerializeField]
     private GameObject gameOverSprite;
     [SerializeField]
     private GameObject next;
+
+    //private int score;
+
+    
+    
+
 
 
 
@@ -65,6 +77,8 @@ public class PlayerBehaviour : MonoBehaviour {
         self = GetComponent<Rigidbody>();
         LevelFinished = false;
         next.SetActive(false);
+
+        SendMessage("UpdateScore");
         
 
         trail = GetComponent<ParticleSystem>();
@@ -74,13 +88,13 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (movementEnabled)
         {
             self.AddForce(0.0f, 0.0f, Input.GetAxis("Horizontal") * speed);
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            if (Input.GetAxis("Horizontal") != 0)
             {
                 trail.Play();
             }
@@ -94,8 +108,16 @@ public class PlayerBehaviour : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (isInRange)
+                {
                     if (!connected)
+                    {
+                        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 10);
+                        SendMessage("UpdateScore");
                         Connect();
+                    }
+                }
+                
+
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -104,7 +126,7 @@ public class PlayerBehaviour : MonoBehaviour {
                     DisConnect();
             }
         }
-        switch (life) {
+        switch (PlayerPrefs.GetInt("Lives")) {
             case 4:
                 life1.sprite = lifeloss;
                 break;
@@ -123,16 +145,30 @@ public class PlayerBehaviour : MonoBehaviour {
             case 0:
                 life5.sprite = lifeloss;
                 gameOverSprite.SetActive(true);
+
+                if(PlayerPrefs.GetInt("Score") > (PlayerPrefs.GetInt("Highscore")))
+                {
+                    PlayerPrefs.SetInt("Highscore", PlayerPrefs.GetInt("Score"));
+                }
+
                 movementEnabled = false;
-                break;
+                break;              
             
         }
+
+        
 
         if (LevelFinished)
         {
             if (Input.GetKey(KeyCode.E))
             {
                 int randomLevel = Random.Range(1, 3);
+
+                PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 100);
+
+                print(PlayerPrefs.GetInt("Score"));
+
+                SendMessage("UpdateScore");
 
                 SceneManager.LoadScene(randomLevel);
             }
@@ -163,12 +199,15 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             connected = false;
             DisConnect();
+
+
+            PlayerPrefs.SetInt("Lives", PlayerPrefs.GetInt("Lives") - 1);
             
-                life = life - 1;
-                print("Life Lost - " + life);
+                //life = life - 1;
+                print("Life Lost - " + PlayerPrefs.GetInt("Lives"));
                 playerSound.clip = fail;
                 playerSound.Play();
-                if(life != 0)
+                if(PlayerPrefs.GetInt("Lives") != 0)
                     SendMessage("Reset");            
                 else
                 {
@@ -233,4 +272,17 @@ public class PlayerBehaviour : MonoBehaviour {
         self.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
     }
+
+    private void UpdateScore()
+    {
+        score.text = "Score - " + PlayerPrefs.GetInt("Score");
+
+        /*if (PlayerPrefs.GetInt("Score") > PlayerPrefs.GetInt("Highscore"))
+        {           
+
+            Highscore.text = "Highscore - " + PlayerPrefs.GetInt("Score");
+        }*/
+    }
+
+
 }

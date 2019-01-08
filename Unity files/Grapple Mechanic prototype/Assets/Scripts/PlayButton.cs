@@ -9,7 +9,10 @@ public class PlayButton : MonoBehaviour
 
     public void OnClick()
     {
-        randomLevel = Random.Range(1, 2);
+        PlayerPrefs.SetInt("Score", 0);
+        PlayerPrefs.SetInt("Lives", 5);
+
+        randomLevel = Random.Range(1, 3);
 
         SceneManager.LoadScene(randomLevel);
     }

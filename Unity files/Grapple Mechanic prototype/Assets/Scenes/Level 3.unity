@@ -188,6 +188,16 @@ Prefab:
       propertyPath: next
       value: 
       objectReference: {fileID: 863208700}
+    - target: {fileID: 114131634281627018, guid: f8fadfe1cc07be644b23023fa23601f1,
+        type: 2}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 863208708}
+    - target: {fileID: 114131634281627018, guid: f8fadfe1cc07be644b23023fa23601f1,
+        type: 2}
+      propertyPath: Highscore
+      value: 
+      objectReference: {fileID: 863208707}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8fadfe1cc07be644b23023fa23601f1, type: 2}
   m_IsPrefabParent: 0
@@ -500,6 +510,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 863208699}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &863208707 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114562586072486822, guid: a894890ef60aca048b10d33266fd2ef3,
+    type: 2}
+  m_PrefabInternal: {fileID: 863208699}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &863208708 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114903451464967870, guid: a894890ef60aca048b10d33266fd2ef3,
+    type: 2}
+  m_PrefabInternal: {fileID: 863208699}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &981055014
 Prefab:
   m_ObjectHideFlags: 0
