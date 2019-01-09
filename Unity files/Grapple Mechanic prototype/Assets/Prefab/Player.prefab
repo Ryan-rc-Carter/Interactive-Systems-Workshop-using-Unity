@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056678858559964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 40.59, z: -2.44}
+  m_LocalPosition: {x: -55, y: 81.3, z: -132.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4010125868106012}
@@ -107,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036771776368200}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 23.81, y: 0, z: 0}
+  m_LocalPosition: {x: 39.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4414799193650454}
@@ -429,6 +429,7 @@ MonoBehaviour:
   fail: {fileID: 8300000, guid: 0b0e73d5a58567244b2d478d9c73ad4d, type: 3}
   score: {fileID: 0}
   Highscore: {fileID: 0}
+  playerResetLocation: {fileID: 0}
   lifeloss: {fileID: 21300000, guid: bd24215a4e43ea34f8b66b55245674d3, type: 3}
   life1: {fileID: 0}
   life2: {fileID: 0}
@@ -460,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dcedd53aa7f1a4980ba598336148c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerResetLocation: {x: 0, y: 0, z: 0}
   player: {fileID: 4414799193650454}
 --- !u!124 &124205309055423920
 Behaviour:

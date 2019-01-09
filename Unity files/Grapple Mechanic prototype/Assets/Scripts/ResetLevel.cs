@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ResetLevel : MonoBehaviour {
 
+    [SerializeField]
     private Vector3 playerResetLocation;
-    private Vector3 barrierResetLocation;
+    
 
     public Transform player;
 

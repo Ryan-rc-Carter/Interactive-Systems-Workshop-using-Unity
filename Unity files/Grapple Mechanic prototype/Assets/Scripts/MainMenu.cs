@@ -6,11 +6,20 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour 
 {
 
+    private int tempScore;
+    private int tempHighScore;
+
     public void OnClick()
     {
-        if (PlayerPrefs.GetInt("Score") > PlayerPrefs.GetInt("Highscore"))
-        {            
-            PlayerPrefs.SetInt("Highscore", PlayerPrefs.GetInt("Score"));
+        tempScore = PlayerPrefs.GetInt("Score");
+        tempHighScore = PlayerPrefs.GetInt("Highscore");
+
+
+        if(tempScore > tempHighScore)
+        {
+            PlayerPrefs.SetInt("Highscore", tempScore);
+
+
         }
 
         SceneManager.LoadScene(0);

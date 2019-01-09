@@ -27,6 +27,10 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField]
     private Text Highscore;
 
+    [SerializeField]
+    private Transform playerResetLocation;
+
+    private Transform selfTransform;
     private Rigidbody self;
     private bool isInRange = false;
     private Transform m_colliderTransform = null;
@@ -36,6 +40,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private bool connected = false;
     private bool canConnect = false;
     private bool movementEnabled = true;
+    private bool respawn = true;
 
     private ParticleSystem trail;
 
@@ -73,6 +78,8 @@ public class PlayerBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        selfTransform = GetComponent<Transform>();
+        playerResetLocation = selfTransform;
         playerSound = GetComponent<AudioSource>();
         self = GetComponent<Rigidbody>();
         LevelFinished = false;
@@ -131,27 +138,27 @@ public class PlayerBehaviour : MonoBehaviour {
                 life1.sprite = lifeloss;
                 break;
             case 3:
+                life1.sprite = lifeloss;
                 life2.sprite = lifeloss;
 
                 break;
             case 2:
+                life1.sprite = lifeloss;
+                life2.sprite = lifeloss;
                 life3.sprite = lifeloss;
 
                 break;
             case 1:
+                life1.sprite = lifeloss;
+                life2.sprite = lifeloss;
+                life3.sprite = lifeloss;
                 life4.sprite = lifeloss;
 
                 break;
             case 0:
                 life5.sprite = lifeloss;
-                gameOverSprite.SetActive(true);
-
-                if(PlayerPrefs.GetInt("Score") > (PlayerPrefs.GetInt("Highscore")))
-                {
-                    PlayerPrefs.SetInt("Highscore", PlayerPrefs.GetInt("Score"));
-                }
-
                 movementEnabled = false;
+                gameOverSprite.SetActive(true);                
                 break;              
             
         }
@@ -162,7 +169,7 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.E))
             {
-                int randomLevel = Random.Range(1, 3);
+                int randomLevel = Random.Range(1, 5);
 
                 PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 100);
 
@@ -185,7 +192,7 @@ public class PlayerBehaviour : MonoBehaviour {
             m_colliderRigid.isKinematic = false;
             if (other.GetComponent<Light>())
             {
-                other.GetComponent<Light>().color = Color.blue;
+                other.GetComponent<Light>().color = Color.cyan;
             }
             isInRange = true;
         }
@@ -200,21 +207,30 @@ public class PlayerBehaviour : MonoBehaviour {
             connected = false;
             DisConnect();
 
+            int tempLives = PlayerPrefs.GetInt("Lives");
 
-            PlayerPrefs.SetInt("Lives", PlayerPrefs.GetInt("Lives") - 1);
+            tempLives = tempLives - 1;           
             
-                //life = life - 1;
-                print("Life Lost - " + PlayerPrefs.GetInt("Lives"));
-                playerSound.clip = fail;
-                playerSound.Play();
-                if(PlayerPrefs.GetInt("Lives") != 0)
-                    SendMessage("Reset");            
-                else
-                {
-                    gameOverSprite.SetActive(true);
+            print("Life Lost - " + tempLives);
 
-                    print("Game Over");
-                }
+            PlayerPrefs.SetInt("Lives", tempLives);
+
+            playerSound.clip = fail;
+            playerSound.Play();
+            if(tempLives > 0)
+            {
+                
+                print("respawn");
+                SendMessage("Reset");
+                
+                
+            }                           
+            else
+            {
+                gameOverSprite.SetActive(true);
+
+                print("Game Over");
+            }
         }
         
     }
@@ -226,7 +242,7 @@ public class PlayerBehaviour : MonoBehaviour {
             canConnect = false;
             if (other.GetComponent<Light>())
             {
-                other.GetComponent<Light>().color = Color.red;
+                other.GetComponent<Light>().color = Color.blue;
             }
             isInRange = false;
             m_colliderRigid.isKinematic = true;
@@ -261,7 +277,6 @@ public class PlayerBehaviour : MonoBehaviour {
             playerSound.clip = detach;
             playerSound.Play();
             connected = false;
-            //trail.Stop();
 
 
         }
@@ -271,18 +286,33 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         self.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
+        
+
+
     }
 
     private void UpdateScore()
     {
-        score.text = "Score - " + PlayerPrefs.GetInt("Score");
 
-        /*if (PlayerPrefs.GetInt("Score") > PlayerPrefs.GetInt("Highscore"))
-        {           
+        int tempScore = PlayerPrefs.GetInt("Score");
+        
 
-            Highscore.text = "Highscore - " + PlayerPrefs.GetInt("Score");
-        }*/
+        score.text = "Score - " + tempScore;
+
+        
     }
 
+    private void UpdateHighScore()
+    {
+        int tempScore = PlayerPrefs.GetInt("Score");
+        int tempHighScore = PlayerPrefs.GetInt("Highscore");
+
+        if(tempScore >= tempHighScore)
+        {
+            tempHighScore = tempScore;
+        }
+        score.text = "HighScore - " + tempHighScore;
+
+    }
 
 }
