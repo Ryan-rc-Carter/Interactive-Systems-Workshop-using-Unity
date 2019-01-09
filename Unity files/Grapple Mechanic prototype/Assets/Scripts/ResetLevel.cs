@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ResetLevel : MonoBehaviour {
 
+    /// <summary>
+    /// This script resets the player's location to a set point in each level
+    /// </summary>
+
     [SerializeField]
     private Vector3 playerResetLocation;
     

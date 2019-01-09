@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class ResetHighscore : MonoBehaviour {
 
-    [SerializeField]
+    /// <summary>
+    /// This code resets the playerpref variable "Highscore" and changes the main menu text to represent this
+    /// </summary>
+
+    [SerializeField] //Makes private variables visible inside the unity editor
     private Text highScoreText;
 
     public void OnClick()

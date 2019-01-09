@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class MenuHighScore : MonoBehaviour {
 
-    [SerializeField]
+    /// <summary>
+    /// This code changes the highscore text to the playerprefs variable Highscore upon opening the game, resetting the highscore or returning to the menu
+    /// </summary>
+
+    [SerializeField] //Makes private variables visible inside the unity editor
     private Text highScoreText;
 
-	// Use this for initialization
+
 	void Start () {
 
         ResetHighScore();
 
     }
 	
-	// Update is called once per frame
-	public void ResetHighScore() {
+	
+	public void ResetHighScore()
+
+    {
+
         int tempHighScore = PlayerPrefs.GetInt("Highscore");
 
 

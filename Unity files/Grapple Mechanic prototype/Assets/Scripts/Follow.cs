@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
+
+    /// <summary>
+    /// This code make the camera look in the direction of the player character.
+    /// This is not implemented properly as in the unity editor as the camera is a child of the player object
+    /// </summary>
+
     public Transform player;
     private Transform self;
-
-
-	// Use this for initialization
+	
 	void Start () {
-
         self = transform;
-
 	}
 	
-	// Update is called once per frame
 	void Update ()
-    {
-       
-
+    {      
        transform.LookAt(player);
 	}
 }

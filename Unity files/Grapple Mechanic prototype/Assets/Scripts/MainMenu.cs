@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
-
+    //this script saves the high score if it was broken in the last run when the player returns to the main menu
     private int tempScore;
     private int tempHighScore;
 

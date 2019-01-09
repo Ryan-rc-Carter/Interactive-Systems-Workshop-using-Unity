@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class UpdateUI : MonoBehaviour {
 
+    /// <summary>
+    /// This script should update the UI when called however i felt it would be better to implement it into the player object as it is the only game object that affects the  Score UI
+    /// </summary>
+
     [SerializeField]
     private Text score;
 
